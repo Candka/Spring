@@ -78,7 +78,7 @@
 				<artifactId>spring-test</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-			<!-- ——————————————————Spring-jdbc—————————————————————— -->
+			<!-- ——————————————————Spring-jdbc-tx——————————————————— -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-jdbc</artifactId>
@@ -107,7 +107,6 @@
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql-connector.version}</version>
 			</dependency>
-
 
 		</dependencies>
 	</dependencyManagement>
