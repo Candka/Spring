@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 注入方式 -->
+	<!-- 1.构造器注入（有参构造器创建对象） -->
+	<!-- (1)通过构造方法参数下标配置 -->
+
+	<!-- 2.setter注入 -->
+	<!-- (1).常量注入 -->
+	<bean name="address" class="com.itheima.bean.Address">
+		<property name="sheng" value="hubei" />
+		<property name="shi" value="wuhan" />
+		<property name="qu" value="hongshan" />
+	</bean>
+
+	<!-- (2).bean注入 -->
+	<bean id="student1" class="com.itheima.bean.Student">
+		<property name="name" value="zhangsan" />
+		<property name="address" ref="address" />
+	</bean>
+
+	<bean id="collectionBean" class="com.itheima.injection.CollectionBean">
+		<!-- (3).数组注入 -->
+		<property name="books">
+			<array>
+				<value>西游记</value>
+				<value>红楼梦</value>
+				<value>三国</value>
+				<ref bean="address"/>
+			</array>
+		</property>
+		<!-- (4).list注入 -->
+		<property name="hobbies">
+			<list>
+				<value>足球</value>
+				<value>篮球</value>
+				<value>乒乓球</value>
+			</list>
+		</property>
+		<!-- (5).map注入 -->
+		<property name="cards">
+			<map>
+				<entry key="中国银行" value="1432512342314324" />
+				<entry>
+					<key>
+						<value>招商银行</value>
+					</key>
+					<value>6767765412412324</value>
+				</entry>
+			</map>
+		</property>
+		<!-- (6).set注入 -->
+		<property name="games">
+			<set>
+				<value>wow</value>
+				<value>lol</value>
+				<value>dota</value>
+			</set>
+		</property>
+		<!-- (7).nullt注入 -->
+		<property name="wife">
+			<null />
+		</property>
+		<!-- (8).properties注入 -->
+		<property name="properties">
+			<props>
+				<prop key="no">00000131</prop>
+				<prop key="sex">男</prop>
+				<prop key="name">xiaozhang</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- (9).P命名空间注入（properties注入） -->
+	<!-- xmlns:p="http://www.springframework.org/schema/p" -->
+	<bean id="student9" class="com.itheima.bean.Student" p:name="zzj"
+		p:age="123456" p:address-ref="address" />
+
+	<!-- (10).c命名空间注入（构造器注入） -->
+	<!-- xmlns:c="http://www.springframework.org/schema/c" -->
+	<bean id="address10" class="com.itheima.bean.Address" c:sheng="guangzhou"
+		c:shi="sz" c:qu="bantian" />
+
+	<!-- (11).spel注入（Spring Expression Language spring表达式语言） -->
+	<bean id="student11" class="com.itheima.bean.Student">
+		<property name="name" value="#{student9.name}"></property>
+		<property name="age" value="#{student9.age}"></property>
+		<property name="address" value="#{student9.address}"></property>
+	</bean>
+
+
+</beans>

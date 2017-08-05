@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- ioc创建对象的方式 -->
+	<!-- 1.通过无参构造方法创建 -->
+	<bean id="student" class="com.itheima.bean.Student" />
+
+	<!-- 2.通过有参构造方法创建 -->
+	<!-- (1)通过构造方法参数下标配置 -->
+	<bean id="student1" class="com.itheima.bean.Student">
+		<constructor-arg index="0" value="张三" />
+		<constructor-arg index="1" value="武汉市" />
+		<constructor-arg index="2" value="15" />
+	</bean>
+
+	<!-- (2)通过参数名称配置 -->
+	<bean id="student2" class="com.itheima.bean.Student">
+		<constructor-arg name="name" value="李四" />
+		<constructor-arg name="addr" value="天门" />
+		<constructor-arg name="age" value="10" />
+	</bean>
+
+	<!-- (3)通过参数类型配置 -->
+	<bean name="student3" class="com.itheima.bean.Student">
+		<constructor-arg type="String" value="王五" />
+		<constructor-arg type="String" value="北京" />
+		<constructor-arg type="Integer" value="16" />
+	</bean>
+
+	<!-- 3.通过工厂方式创建对象 -->
+	<!-- (1)静态工厂 -->
+	<bean name="student4" class="com.itheima.bean.StudentFactory"
+		factory-method="newInstance" />
+
+	<!-- (2)动态工厂 -->
+	<bean name="studentFactory" class="com.itheima.bean.StudentFactory" />
+	<bean name="student5" factory-bean="studentFactory"
+		factory-method="newDynamicInstance" />
+
+</beans>
